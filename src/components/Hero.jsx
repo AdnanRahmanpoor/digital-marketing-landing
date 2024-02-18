@@ -2,7 +2,7 @@ import HeroImg from '../assets/hero.jpg';
 
 const Hero = () => {
   return (
-    <section className='flex md:flex-row flex-col z-10 h-screen bg-[#05080d]'>
+    <section className='flex md:flex-row flex-col z-10 h-screen bg-[#000000]'>
       {/* <div className='absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/45 sm:to-white/25 sm:bg-gradient-to-r '></div> */}
 
       <div className='flex-1 relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8'>
