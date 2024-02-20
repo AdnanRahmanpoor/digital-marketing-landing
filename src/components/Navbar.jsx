@@ -1,9 +1,22 @@
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const toggleMenu = () => {
     setOpen((prevOpen) => !prevOpen);
+  };
+
+  const menuVariants = {
+    initial: {
+      scaleY: 0,
+    },
+    animate: {
+      scaleY: 1,
+    },
+    exit: {
+      scaleY: 0,
+    },
   };
 
   return (
@@ -123,93 +136,101 @@ const Navbar = () => {
                 </svg>
               </button>
             </div>
+            <AnimatePresence>
             {open && (
-              <div className='lg:hidden fixed top-0 left-0 w-full h-screen bg-slate-950 text-white p-5 z-10'>
-                <div className='flex flex-col h-full'>
-                  <div className='flex justify-between'>
-                    <h1 className='text-lg text-white'>DigiMedia</h1>
-                    <p
-                      className='cursor-pointer text-md text-white'
-                      onClick={toggleMenu}
-                    >
-                      Close
-                    </p>
+                <motion.div
+                  variants={menuVariants}
+                  initial='initial'
+                  animate='animate'
+                  exit='exit'
+                  className='lg:hidden fixed origin-top top-0 left-0 w-full h-screen bg-slate-950 text-white p-5 z-10'
+                >
+                  <div className='flex flex-col h-full'>
+                    <div className='flex justify-between'>
+                      <h1 className='text-lg text-white'>DigiMedia</h1>
+                      <p
+                        className='cursor-pointer text-md text-white'
+                        onClick={toggleMenu}
+                      >
+                        Close
+                      </p>
+                    </div>
+                    <div className='flex flex-col h-full justify-center items-center gap-4'>
+                      <ul>
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Homepage{' '}
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            About{' '}
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Services{' '}
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Porfolio{' '}
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Why Us{' '}
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Order{' '}
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className='text-gray-500 transition hover:text-[#fb0f64]'
+                            href='#'
+                          >
+                            {' '}
+                            Contact{' '}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className='flex flex-col h-full justify-center items-center gap-4'>
-                    <ul>
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Homepage{' '}
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          About{' '}
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Services{' '}
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Porfolio{' '}
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Why Us{' '}
-                        </a>
-                      </li>
-
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Order{' '}
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          className='text-gray-500 transition hover:text-[#fb0f64]'
-                          href='#'
-                        >
-                          {' '}
-                          Contact{' '}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                </motion.div>
             )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
