@@ -1,4 +1,11 @@
+import { useState } from 'react';
+
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const toggleMenu = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
   return (
     <header className='bg-[#191b27]'>
       <div className='mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8'>
@@ -95,9 +102,11 @@ const Navbar = () => {
                 </a>
               </div>
             </div>
-
             <div className='block md:hidden'>
-              <button className='rounded bg-[#202331] p-2 text-gray-600 transition hover:text-gray-400/75'>
+              <button
+                className='rounded bg-[#202331] p-2 text-gray-600 transition hover:text-gray-400/75'
+                onClick={toggleMenu}
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-5 w-5'
@@ -114,6 +123,93 @@ const Navbar = () => {
                 </svg>
               </button>
             </div>
+            {open && (
+              <div className='lg:hidden fixed top-0 left-0 w-full h-screen bg-slate-950 text-white p-5 z-10'>
+                <div className='flex flex-col h-full'>
+                  <div className='flex justify-between'>
+                    <h1 className='text-lg text-white'>DigiMedia</h1>
+                    <p
+                      className='cursor-pointer text-md text-white'
+                      onClick={toggleMenu}
+                    >
+                      Close
+                    </p>
+                  </div>
+                  <div className='flex flex-col h-full justify-center items-center gap-4'>
+                    <ul>
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Homepage{' '}
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          About{' '}
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Services{' '}
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Porfolio{' '}
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Why Us{' '}
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Order{' '}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className='text-gray-500 transition hover:text-[#fb0f64]'
+                          href='#'
+                        >
+                          {' '}
+                          Contact{' '}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
