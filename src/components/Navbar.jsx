@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { NavLinks } from './NavLinks';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -13,9 +14,34 @@ const Navbar = () => {
     },
     animate: {
       scaleY: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.12, 0, 0.39, 0],
+      },
     },
     exit: {
       scaleY: 0,
+      transition: {
+        delay: 0.5,
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  const containerVariants = {
+    initial: {
+      transition: {
+        staggerChildren: 0.09,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.09,
+        staggerDirection: 1,
+      },
     },
   };
 
@@ -137,7 +163,7 @@ const Navbar = () => {
               </button>
             </div>
             <AnimatePresence>
-            {open && (
+              {open && (
                 <motion.div
                   variants={menuVariants}
                   initial='initial'
@@ -155,81 +181,30 @@ const Navbar = () => {
                         Close
                       </p>
                     </div>
-                    <div className='flex flex-col h-full justify-center items-center gap-4'>
-                      <ul>
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Homepage{' '}
-                          </a>
-                        </li>
 
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            About{' '}
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Services{' '}
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Porfolio{' '}
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Why Us{' '}
-                          </a>
-                        </li>
-
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Order{' '}
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className='text-gray-500 transition hover:text-[#fb0f64]'
-                            href='#'
-                          >
-                            {' '}
-                            Contact{' '}
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <motion.div
+                      variants={containerVariants}
+                      initial='initial'
+                      animate='open'
+                      exit='initial'
+                      className='flex flex-col h-full justify-center items-center gap-4'
+                    >
+                      {NavLinks.map((link, index) => {
+                        return (
+                          // eslint-disable-next-line react/jsx-key
+                          <div className='overflow-hidden'>
+                            <MobileNavLinks
+                              key={index}
+                              name={link.name}
+                              href={link.href}
+                            />
+                          </div>
+                        );
+                      })}
+                    </motion.div>
                   </div>
                 </motion.div>
-            )}
+              )}
             </AnimatePresence>
           </div>
         </div>
@@ -238,3 +213,32 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+const linksVariants = {
+  initial: {
+    y: '30vh',
+    transition: {
+      duration: 0.5,
+      ease: [0.37, 0, 0.63, 1],
+    },
+  },
+  open: {
+    y: '0',
+    transition: {
+      ease: [0, 0.55, 0.45, 1],
+      duration: 0.7,
+    },
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+const MobileNavLinks = ({ name, href }) => {
+  return (
+    <motion.div
+      variants={linksVariants}
+      className='text-gray-500 text-5xl hover:text-[#fb0f64]'
+    >
+      <a href={href}>{name}</a>
+    </motion.div>
+  );
+};
