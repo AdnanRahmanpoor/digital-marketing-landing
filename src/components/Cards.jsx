@@ -1,6 +1,6 @@
 const Cards = () => {
   return (
-    <div className='flex md:flex-row flex-col lg:pt-10 px-10 pb-40  bg-[#191b27]'>
+    <div className='flex md:flex-row flex-col lg:pt-10 px-10 pb-20 mt-52 md:mt-10 lg:mt-0 bg-[#191b27]'>
       <div className='rounded-lg border bg-gradient-to-b from-white/20  to-white/5 p-4 md:-my-20 md:mx-4 my-4 hover:shadow-[#fb0f64] hover:border-[#fb0f64] transition hover:shadow-lg sm:p-6'>
         <span className='flex justify-center mx-auto w-14 rounded  bg-white/20 p-2 text-white'>
           <svg
